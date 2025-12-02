@@ -1,0 +1,46 @@
+# --------------------------
+# Node.js / TypeScript
+# --------------------------
+node_modules/
+dist/
+*.tsbuildinfo
+
+# --------------------------
+# Environment files
+# --------------------------
+.env
+.env.*
+!.env.example   # サンプル.envをリポジトリに置く場合
+
+# --------------------------
+# Database / Local Data
+# --------------------------
+db/data/
+
+# --------------------------
+# Logs
+# --------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------------
+# IDE / Editor
+# --------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# --------------------------
+# Docker
+# --------------------------
+*.env
+docker-compose.override.yml
