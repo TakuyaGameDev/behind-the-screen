@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    container_name: vue-prod
+    ports:
+      - '80:80'
+    command: npm run build && npx serve -s dist
+
+  backend:
+    build: ./backend
+    container_name: node-prod
+    env_file: ./backend/.env.prod
+    ports:
+      - '3000:3000'
+    command: node dist/server.js
+
+  db:
+    image: postgres:15
+    container_name: postgres-prod
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: appdb
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
