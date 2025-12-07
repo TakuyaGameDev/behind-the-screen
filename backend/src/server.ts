@@ -1,17 +1,22 @@
 import express from "express";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { Client } from "pg";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello from Backend!");
+// DB接続
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Render PostgreSQL はこれ必須
+  },
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+client
+  .connect()
+  .then(() => console.log("Connected to database"))
+  .catch((err: any) => console.error("Database connection error:", err));
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
