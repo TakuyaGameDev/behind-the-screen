@@ -4,6 +4,10 @@ import { Client } from "pg";
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Backend API is running');
+});
+
 // DB接続
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
